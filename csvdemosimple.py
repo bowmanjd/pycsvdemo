@@ -1,4 +1,4 @@
-"""Python CSV handling demo."""
+"""Python CSV handling demo, simple version."""
 
 __version__ = "0.1.0"
 
@@ -7,9 +7,10 @@ from pathlib import Path
 
 
 def transform():
-    """Filters and transforms each row, with output to a separate file."""
+    """Filters and transforms each row of input CSV, with output to a separate file."""
     inpath = Path("sample.csv")
     outpath = Path("out/transformed.csv")
+    outpath.parent.mkdir(exist_ok=True)
     args = {"newline": "", "encoding": "utf-8"}
     with inpath.open("r", **args) as infile, outpath.open("w", **args) as outfile:
         reader = csv.DictReader(infile)
