@@ -9,17 +9,15 @@ from pathlib import Path
 
 
 def transform(
-    infilename,
-    outfilename,
-    inencoding="utf-8-sig",
-    outencoding="utf-8-sig",
+    infilename, outfilename, inencoding="utf-8-sig", outencoding="utf-8-sig",
 ):
     """Filters and transforms each row, with output to a separate file."""
     inpath = Path(infilename)
     outpath = Path(outfilename)
-    with inpath.open("r", newline="", encoding=inencoding) as infile, outpath.open(
-        "w", newline="", encoding=outencoding
-    ) as outfile:
+    args = {"newline": ""}
+    inargs = {"encoding": inencoding, **args}
+    outargs = {"encoding": outencoding, **args}
+    with inpath.open("r", **inargs) as infile, outpath.open("w", **outargs) as outfile:
         reader = csv.DictReader(infile)
         writer = csv.DictWriter(outfile, ["Firstname", "Lastname", "Username"])
 
@@ -41,12 +39,10 @@ def run(args=None):
         args = sys.argv[1:]
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "inputfile",
-        help="read from this CSV file",
+        "inputfile", help="read from this CSV file",
     )
     parser.add_argument(
-        "outputfile",
-        help="save to this CSV file",
+        "outputfile", help="save to this CSV file",
     )
     parser.add_argument(
         "-e",
@@ -55,14 +51,10 @@ def run(args=None):
         help="character encoding of input and output files",
     )
     parser.add_argument(
-        "-ie",
-        "--inputencoding",
-        help="character encoding of input file",
+        "-ie", "--inputencoding", help="character encoding of input file",
     )
     parser.add_argument(
-        "-oe",
-        "--outputencoding",
-        help="character encoding to use for output file",
+        "-oe", "--outputencoding", help="character encoding to use for output file",
     )
     args = parser.parse_args(args)
 
