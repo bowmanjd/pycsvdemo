@@ -16,10 +16,10 @@ cd pycsvdemo
 ## Usage
 
 ```console
-python csvdemo.py sample-utf8.csv
+python csvdemo.py -e utf-8-sig samples/sample-utf8bom.csv out/sample-transformed.csv
 ```
 
-> If you installed in a currently active virtual environment, as recommended above, you can use a shorter form: `csvdemo sample-utf8.csv`
+> If you installed in a currently active virtual environment, as recommended above, you can use a shorter form: `csvdemo -e utf-8-sig samples/sample-utf8bom.csv out/sample-transformed.csv`
 
 ## Contributing
 
