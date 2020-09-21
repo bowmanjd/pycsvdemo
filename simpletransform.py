@@ -1,7 +1,5 @@
 """Python CSV handling demo, simple version."""
 
-__version__ = "0.1.0"
-
 import csv
 from pathlib import Path
 
