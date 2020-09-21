@@ -9,7 +9,7 @@ def transform():
     inpath = Path("sample.csv")
     outpath = Path("out/transformed.csv")
     outpath.parent.mkdir(exist_ok=True)
-    args = {"newline": "", "encoding": "utf-8"}
+    args = {"newline": "", "encoding": "utf-8-sig"}
     with inpath.open("r", **args) as infile, outpath.open("w", **args) as outfile:
         reader = csv.DictReader(infile)
         writer = csv.DictWriter(outfile, ["Firstname", "Lastname", "Username"])
